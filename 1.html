@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#102b4e">
+  <title>AI Withholding Tax Assistant</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="app-shell">
+  <aside class="sidebar" id="sidebar">
+    <a class="brand" href="#dashboard"><span class="brand-icon">฿</span><span><b>AI Tax Assistant</b><small>WITHHOLDING TAX</small></span></a>
+    <div class="nav-caption">เมนูหลัก</div>
+    <nav class="nav">
+      <button class="nav-link active" data-page="dashboard"><span>▦</span> Dashboard</button>
+      <button class="nav-link" data-page="analyzer"><span>⌕</span> วิเคราะห์ภาษี</button>
+      <button class="nav-link" data-page="history"><span>◷</span> ประวัติการคำนวณ</button>
+      <button class="nav-link" data-page="knowledge"><span>▣</span> ฐานความรู้ทางภาษี</button>
+      <button class="nav-link" data-page="about"><span>ⓘ</span> เกี่ยวกับระบบ</button>
+    </nav>
+    <div class="sidebar-bottom"><span class="online-dot"></span> ระบบต้นแบบเพื่อการศึกษา<p>ผลวิเคราะห์เป็นข้อมูลเบื้องต้น ต้องตรวจสอบกฎหมายและข้อเท็จจริงก่อนใช้งานจริง</p></div>
+  </aside>
+
+  <main class="main">
+    <header class="topbar">
+      <button class="mobile-menu" id="menuToggle" aria-label="เปิดเมนู">☰</button>
+      <div><div class="crumb">AC317 / การบัญชีภาษีอากร</div><div class="page-title" id="pageTitle">Dashboard</div></div>
+      <div class="top-actions"><span class="prototype-pill"><i></i> Prototype v2.0</span><span class="avatar">TX</span></div>
+    </header>
+
+    <section class="page active" id="page-dashboard">
+      <div class="hero">
+        <div class="hero-copy"><div class="hero-kicker">SMART TAX WORKSPACE</div><h1>ผู้ช่วยวิเคราะห์ภาษี<br>หัก ณ ที่จ่าย</h1><p>ตรวจสอบประเภทธุรกรรม คำนวณภาษี และสรุปยอดจ่ายอย่างเป็นขั้นตอน</p><button class="btn btn-light" data-go="analyzer">เริ่มวิเคราะห์รายการ <span>→</span></button></div>
+        <div class="hero-art"><div class="orbit orbit-one"></div><div class="orbit orbit-two"></div><div class="hero-document"><span>฿</span><b>TAX</b><small>WITHHOLDING</small><div class="doc-lines"></div><div class="doc-lines short"></div><div class="doc-stamp">✓</div></div><div class="float-chip">AI ANALYSIS</div></div>
+      </div>
+      <div class="stats-grid">
+        <article class="stat-card"><div class="stat-icon blue">▦</div><div class="stat-label">รายการที่วิเคราะห์</div><strong id="statTotal">0</strong><small>รายการทั้งหมดในอุปกรณ์นี้</small></article>
+        <article class="stat-card"><div class="stat-icon green">✓</div><div class="stat-label">ยืนยันหลักเกณฑ์ได้</div><strong id="statConfirmed">0</strong><small>ผลวิเคราะห์ที่เข้าเงื่อนไขกฎ</small></article>
+        <article class="stat-card"><div class="stat-icon amber">!</div><div class="stat-label">ต้องตรวจสอบเพิ่มเติม</div><strong id="statReview">0</strong><small>ข้อมูลหรือกฎหมายยังไม่ชัดเจน</small></article>
+        <article class="stat-card"><div class="stat-icon violet">฿</div><div class="stat-label">ภาษีหัก ณ ที่จ่ายสะสม</div><strong id="statTax">฿0.00</strong><small>รวมเฉพาะรายการที่คำนวณได้</small></article>
+      </div>
+      <div class="section-head"><div><div class="eyebrow">QUICK ACCESS</div><h2>เริ่มต้นใช้งาน</h2><p>เลือกเครื่องมือที่ต้องการ</p></div></div>
+      <div class="quick-grid">
+        <button class="quick-card" data-go="analyzer"><span class="quick-icon">⌕</span><b>วิเคราะห์ภาษี</b><small>กรอกข้อมูลธุรกรรมใหม่</small><span class="arrow">→</span></button>
+        <button class="quick-card" data-go="knowledge"><span class="quick-icon">▣</span><b>ศึกษาฐานความรู้</b><small>ตรวจสอบแหล่งกฎหมาย</small><span class="arrow">→</span></button>
+        <button class="quick-card" data-go="history"><span class="quick-icon">◷</span><b>ประวัติการคำนวณ</b><small>ดูรายการที่เคยวิเคราะห์</small><span class="arrow">→</span></button>
+      </div>
+      <div class="notice-card"><div class="notice-symbol">!</div><div><b>ข้อควรทราบก่อนใช้ผลคำนวณ</b><ul><li>ผลลัพธ์เป็นเครื่องมือช่วยศึกษา ไม่ใช่คำวินิจฉัยทางภาษี</li><li>อัตราภาษีขึ้นกับประเภทเงินได้ สถานะผู้จ่าย/ผู้รับ และเงื่อนไขธุรกรรม</li><li>ระบบจะไม่คาดเดาเมื่อข้อมูลไม่ครบหรือไม่เข้าเงื่อนไขกฎที่บันทึกไว้</li></ul></div></div>
+      <div class="section-head recent-head"><div><div class="eyebrow">RECENT ACTIVITY</div><h2>รายการล่าสุด</h2><p>ประวัติการวิเคราะห์ที่บันทึกไว้ในอุปกรณ์นี้</p></div><button class="text-btn" data-go="history">ดูทั้งหมด →</button></div>
+      <div class="table-wrap"><table><thead><tr><th>ผู้รับเงิน</th><th>ประเภทธุรกรรม</th><th>วันที่จ่าย</th><th>ภาษีหัก ณ ที่จ่าย</th><th>สถานะ</th></tr></thead><tbody id="recentRows"><tr><td colspan="5" class="empty">ยังไม่มีรายการวิเคราะห์</td></tr></tbody></table></div>
+    </section>
+
+    <section class="page" id="page-analyzer">
+      <div class="page-intro"><div class="eyebrow">TAX ANALYSIS WORKFLOW</div><h1>วิเคราะห์ภาษีหัก ณ ที่จ่าย</h1><p>กรอกข้อมูลตามเอกสารธุรกรรม ระบบจะตรวจสอบเงื่อนไขก่อนคำนวณทุกครั้ง</p></div>
+      <div class="analyzer-layout">
+        <form class="form-card" id="taxForm">
+          <div class="form-card-head"><div><span class="step-no">01</span><div><h2>ข้อมูลคู่ค้า</h2><p>ระบุสถานะผู้จ่ายและผู้รับเงิน</p></div></div><span class="required-note">* จำเป็นต้องกรอก</span></div>
+          <div class="form-grid">
+            <label>ชื่อผู้จ่ายเงิน <em>*</em><input id="payerName" placeholder="เช่น บริษัท ABC จำกัด" required value="บริษัท ABC จำกัด"></label>
+            <label>สถานะผู้จ่ายเงิน <em>*</em><select id="payerType" required><option value="company" selected>บริษัท / นิติบุคคลไทย</option><option value="individual">บุคคลธรรมดาไทย</option><option value="other">อื่น ๆ / ไม่แน่ใจ</option></select></label>
+            <label>ชื่อผู้รับเงิน <em>*</em><input id="payeeName" placeholder="ชื่อผู้รับเงิน / ผู้ให้บริการ" required></label>
+            <label>สถานะผู้รับเงิน <em>*</em><select id="payeeType" required><option value="">เลือกสถานะผู้รับเงิน</option><option value="company">บริษัท / นิติบุคคลไทย</option><option value="individual">บุคคลธรรมดาไทย</option><option value="foreign">ผู้รับเงินต่างประเทศ</option><option value="foundation">มูลนิธิ / สมาคม</option></select></label>
+            <label>ถิ่นที่อยู่ของผู้รับเงิน <em>*</em><select id="residency" required><option value="thai">ประเทศไทย</option><option value="foreign">ต่างประเทศ</option><option value="unknown">ไม่ทราบ</option></select></label>
+            <label>วันที่จ่ายเงิน <em>*</em><input id="paymentDate" type="date" required></label>
+          </div>
+          <div class="form-divider"></div>
+          <div class="form-card-head"><div><span class="step-no">02</span><div><h2>รายละเอียดธุรกรรม</h2><p>เลือกประเภทเงินได้และระบุจำนวนเงิน</p></div></div></div>
+          <div class="form-grid">
+            <label class="full">รายละเอียดธุรกรรม <em>*</em><input id="description" placeholder="เช่น ค่าบริการทำความสะอาดสำนักงานประจำเดือน" required></label>
+            <label>ประเภทการจ่ายเงิน <em>*</em><select id="category" required><option value="">เลือกประเภทธุรกรรม</option><option value="rent">ค่าเช่าทรัพย์สิน</option><option value="contract">ค่าจ้างทำของ</option><option value="service">ค่าบริการอื่น</option><option value="advertising">ค่าโฆษณา</option><option value="transport">ค่าขนส่ง</option><option value="goods">ซื้อสินค้า</option><option value="hotel">ค่าบริการโรงแรม / ห้องพัก</option><option value="restaurant">ค่าบริการภัตตาคาร / อาหาร</option><option value="unclear">อื่น ๆ / ไม่แน่ใจ</option></select></label>
+            <label>รูปแบบการคิดค่าบริการกับสินค้า<select id="bundle"><option value="separate">เป็นรายการแยกชัดเจน</option><option value="combined">รวมสินค้าและบริการเป็นยอดเดียว</option><option value="unknown">ไม่แน่ใจ / ต้องตรวจสัญญา</option></select></label>
+            <label>จำนวนเงินก่อน VAT (บาท) <em>*</em><input id="amount" type="number" min="0.01" step="0.01" placeholder="0.00" required></label>
+            <label>อัตรา VAT<select id="vatRate"><option value="0">ไม่มี VAT (0%)</option><option value="7" selected>7%</option><option value="other">อัตราอื่น / ไม่แน่ใจ</option></select></label>
+            <label>เงื่อนไขพิเศษ / หมายเหตุ<input id="special" placeholder="เช่น ผู้รับจัดหาวัสดุสำคัญเอง"></label>
+            <label class="check-field"><input id="regularTransport" type="checkbox"> ผู้รับประกอบธุรกิจขนส่งเป็นปกติ</label>
+            <label class="check-field"><input id="publicPassenger" type="checkbox"> เป็นค่าโดยสารขนส่งสาธารณะ</label>
+            <label class="check-field"><input id="sellerDelivery" type="checkbox"> ผู้ขายสินค้าเป็นผู้จัดส่งเองและไม่ได้ทำธุรกิจขนส่ง</label>
+            <label class="check-field"><input id="hotelRestaurantOperator" type="checkbox"> ผู้รับประกอบกิจการโรงแรม / ภัตตาคารโดยตรง</label>
+          </div>
+          <div class="form-note"><b>คำแนะนำ:</b> ฐานภาษีหัก ณ ที่จ่ายโดยทั่วไปคำนวณจากมูลค่าก่อน VAT เมื่อ VAT แยกแสดงชัดเจน หากข้อเท็จจริงไม่ชัดเจน ระบบจะให้ตรวจสอบก่อน</div>
+          <div class="form-buttons"><button type="reset" class="btn btn-outline" id="clearForm">ล้างข้อมูล</button><button type="submit" class="btn btn-primary">วิเคราะห์และคำนวณ <span>→</span></button></div>
+        </form>
+        <aside class="side-help"><div class="help-icon">✦</div><h3>AI Analysis Engine</h3><p>ระบบใช้กฎการวิเคราะห์ที่กำหนดจากฐานความรู้ภาษี พร้อมตรวจสอบข้อมูลก่อนคำนวณ</p><div class="help-steps"><span>✓ ตรวจสอบข้อมูล</span><span>✓ จำแนกประเภทรายได้</span><span>✓ ตรวจสอบหน้าที่หัก</span><span>✓ คำนวณภาษีและยอดสุทธิ</span><span>✓ แสดงกฎหมายอ้างอิง</span></div><div class="help-foot">หากพบกรณีนอกเหนือจากกฎ ระบบจะหยุดและแจ้งให้ตรวจสอบ</div></aside>
+      </div>
+      <div id="analysisResult" class="result-card hidden" aria-live="polite"></div>
+    </section>
+
+    <section class="page" id="page-history">
+      <div class="page-intro"><div class="eyebrow">CALCULATION HISTORY</div><h1>ประวัติการคำนวณ</h1><p>รายการวิเคราะห์จะถูกบันทึกไว้ในเบราว์เซอร์เครื่องนี้</p></div>
+      <div class="history-toolbar"><div class="search-box">⌕ <input id="historySearch" placeholder="ค้นหาชื่อผู้รับหรือประเภทธุรกรรม"></div><button id="exportCsv" class="btn btn-outline">ดาวน์โหลด CSV ↓</button><button id="clearHistory" class="btn btn-danger-outline">ลบประวัติ</button></div>
+      <div class="table-wrap"><table><thead><tr><th>วันที่</th><th>ผู้รับเงิน</th><th>รายการ</th><th>อัตรา</th><th>ภาษีหัก</th><th>ยอดสุทธิ</th><th>สถานะ</th><th></th></tr></thead><tbody id="historyRows"><tr><td colspan="8" class="empty">ยังไม่มีประวัติการคำนวณ</td></tr></tbody></table></div>
+    </section>
+
+    <section class="page" id="page-knowledge">
+      <div class="page-intro"><div class="eyebrow">TAX KNOWLEDGE BASE</div><h1>ฐานความรู้ทางภาษี</h1><p>หลักเกณฑ์ที่ใช้ในต้นแบบ พร้อมแหล่งอ้างอิงให้เปิดตรวจสอบ</p></div>
+      <div class="knowledge-alert"><b>ขอบเขตการใช้งาน</b><p>กฎด้านล่างเป็นชุดกฎเพื่อการเรียนรู้สำหรับธุรกรรมทั่วไปของผู้จ่ายที่เป็นบริษัทไทยและผู้รับในประเทศไทย ไม่ครอบคลุมทุกข้อยกเว้นหรือข้อเท็จจริงเฉพาะสัญญา</p></div>
+      <div class="rules-grid" id="rulesGrid"></div>
+      <div class="section-head"><div><div class="eyebrow">OFFICIAL REFERENCES</div><h2>แหล่งข้อมูลทางการ</h2><p>ตรวจสอบคำสั่งฉบับแก้ไขและกฎหมายที่มีผล ณ วันที่จ่ายเงินจริง</p></div></div>
+      <div class="source-list">
+        <a href="https://www.rd.go.th/3479.html" target="_blank" rel="noopener"><span class="source-icon">⚖</span><span><b>คำสั่งกรมสรรพากร ท.ป.4/2528</b><small>หลักเกณฑ์การหักภาษี ณ ที่จ่าย และฉบับแก้ไขเพิ่มเติม</small></span><strong>↗</strong></a>
+        <a href="https://www.rd.go.th/3326.html" target="_blank" rel="noopener"><span class="source-icon">▤</span><span><b>คำชี้แจงกรมสรรพากร</b><small>ตัวอย่างการจ่ายเงินที่ไม่ต้องหัก เช่น ซื้อสินค้าพร้อมค่าขนส่งโดยผู้ขายไม่ได้ประกอบธุรกิจขนส่ง</small></span><strong>↗</strong></a>
+        <a href="https://www.rd.go.th/" target="_blank" rel="noopener"><span class="source-icon">▣</span><span><b>เว็บไซต์กรมสรรพากร</b><small>ประมวลรัษฎากร ประกาศ คำสั่ง แบบภาษี และข่าวสาร</small></span><strong>↗</strong></a>
+      </div>
+    </section>
+
+    <section class="page" id="page-about">
+      <div class="page-intro"><div class="eyebrow">ABOUT THIS PROJECT</div><h1>เกี่ยวกับระบบ</h1><p>AI Withholding Tax Assistant · Prototype v2.0</p></div>
+      <div class="about-card"><div class="about-logo">฿</div><h2>AI Withholding Tax Assistant</h2><p>เว็บแอปพลิเคชันต้นแบบเพื่อช่วยศึกษาและฝึกวิเคราะห์ภาษีเงินได้หัก ณ ที่จ่าย ตามหัวข้อวิชา AC317 การบัญชีภาษีอากร</p><div class="about-meta"><span>Frontend<strong>HTML5 / CSS3 / Vanilla JavaScript</strong></span><span>Storage<strong>LocalStorage</strong></span><span>Responsive<strong>Desktop / Tablet / Mobile</strong></span><span>Analysis<strong>Rule-based Tax Engine</strong></span></div><div class="notice-card"><div class="notice-symbol">!</div><div><b>ข้อจำกัดของระบบ</b><p>ระบบนี้เป็น Rule-based Prototype ไม่ได้เชื่อมต่อโมเดล AI หรือ API กรมสรรพากรแบบเรียลไทม์ อัตราและเงื่อนไขต้องได้รับการตรวจสอบและปรับปรุงเมื่อกฎหมายเปลี่ยนแปลง</p></div></div></div>
+    </section>
+    <footer>© 2026 AI Withholding Tax Assistant · ระบบต้นแบบเพื่อการศึกษา AC317</footer>
+  </main>
+</div>
+<div class="toast" id="toast"></div>
+<script src="script.js"></script>
+</body></html>
